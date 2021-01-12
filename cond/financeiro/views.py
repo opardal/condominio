@@ -6,3 +6,6 @@ def index(request):
     context = {}
     return render(request, 'financeiro/index.html', context)
 
+def cadastrar_despesa(request):
+    context = {}
+    return render(request, 'financeiro/cadastrar_despesa.html', context)

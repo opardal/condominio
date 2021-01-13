@@ -1,0 +1,15 @@
+{% extends "financeiro/base.html" %}
+
+{% block titulo %}
+<h1> Detalhamento Despesas</h1>
+{% endblock %}
+
+
+{% block content %}
+    <h2>Detalhe:</h2>
+    <ul>
+        <li>{{ despesa.nome }}</li>
+        <li>{{ despesa.valor }}</li>
+    </ul>
+{% endblock %}
+

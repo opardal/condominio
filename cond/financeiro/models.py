@@ -4,6 +4,6 @@ from django.db import models
 
 
 class Despesa(models.Model):
-    titulo = models.CharField(max_length=200)
+    nome = models.CharField(max_length=200)
     valor = models.FloatField()
-    
+   

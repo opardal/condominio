@@ -1,0 +1,16 @@
+{% extends "financeiro/base.html" %}
+
+{% block titulo %}
+<h1> Despesas Cadastradas</h1>
+{% endblock %}
+
+
+{% block content %}
+    <h2>Despesas</h2>
+    <ul>
+        {% for despesa in lista_de_despesas %}
+            <li><a href="{% url 'financeiro:despesa_detalhe' despesa.id %}">{{ despesa.nome }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

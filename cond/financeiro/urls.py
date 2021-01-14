@@ -5,7 +5,9 @@ from . import views
 app_name = 'financeiro'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('cadastrar_despesa', views.cadastrar_despesa, name='cadastrar_despesa'),
-    path('despesas/', views.Despesas.as_view()),
-    path('despesas/<int:pk>/', views.DespesaDetalhe.as_view(), name='despesa_detalhe'),
+    path('despesas/', views.Despesas.as_view(), name='despesas'),
+    path('despesas/<int:pk>/', views.DespesaDetalhe.as_view(), name='despesa-detail'),
+    path('despesas/add/', views.DespesaCreate.as_view(), name='despesa-add'),
+    path('despesas/<int:pk>/update/', views.DespesaUpdate.as_view(), name='despesa-update'),
+    path('despesas/<int:pk>/delete/', views.DespesaDelete.as_view(), name='despesa-delete'),
 ]

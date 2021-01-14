@@ -6,10 +6,17 @@
 
 
 {% block content %}
+
+<a href="{% url 'financeiro:despesa-update' despesa.id %}" > Alterar dados da Despesa</a><br>
+<a href="{% url 'financeiro:despesa-delete' despesa.id %}" >Deletar Despesa</a><br>
+
     <h2>Detalhe:</h2>
     <ul>
         <li>{{ despesa.nome }}</li>
         <li>{{ despesa.valor }}</li>
     </ul>
+
+<br><br>
+<a href="{% url 'financeiro:despesas' %}" >Voltar para lista</a>
 {% endblock %}
 

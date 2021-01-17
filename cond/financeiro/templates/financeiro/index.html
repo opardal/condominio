@@ -2,11 +2,17 @@
 
 {% block titulo %}
 <h1> Módulo Financeiro</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+</form>
+  
 {% endblock %}
 
 
 {% block content %}
-<a href="{% url 'financeiro:despesas' %}">Despesas</a><br>
+<a href="{% url 'financeiro:despesas-comp' competencia_selecionada %}">Despesas</a><br>
 <a href="{% url 'financeiro:boletos' %}">Boletos</a><br>
 {% endblock %}
 

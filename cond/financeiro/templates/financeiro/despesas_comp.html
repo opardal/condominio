@@ -1,0 +1,21 @@
+{% extends "financeiro/base.html" %}
+
+{% block titulo %}
+<h1> Despesas Cadastradas</h1>
+{% endblock %}
+
+
+{% block content %}
+
+<a href="{% url 'financeiro:despesa-add' %}">Incluir nova despesa</a>
+<br>
+    <h2>Despesas cadastradas para a competência {{ competencia }} </h2>
+    <ul>
+        {% for despesa in lista_de_despesas %}
+            <li><a href="{% url 'financeiro:despesa-detail' despesa.id %}">{{ despesa.nome }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+{{ context }}

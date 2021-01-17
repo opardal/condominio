@@ -1,17 +1,31 @@
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Despesa, Boleto, Competencia
 from .forms import CompetenciaForm
-
 
 
 class Despesas(ListView):
     model = Despesa
     context_object_name = 'lista_de_despesas'
     template_name = 'financeiro/despesas.html'
+
+
+class DespesasComp(ListView):
+    #model = Despesa
+    context_object_name = 'lista_de_despesas'
+    template_name = 'financeiro/despesas_comp.html'
+
+    def get_queryset(self):
+        self.competencia = get_object_or_404(Competencia, id=self.kwargs['competencia'])
+        return Despesa.objects.filter(competencia=self.competencia)
+    
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['competencia'] = self.competencia
+        return context
 
 
 class DespesaDetalhe(DetailView):
@@ -45,8 +59,7 @@ class FinanceiroIndex(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['competencia_selecionada'] = 0
-        #context['form'] = CompetenciaForm(initial={'competencia':2})
+        context['competencia_selecionada'] = 1
         return context
     
     def get (self, request, *args, **kwargs):

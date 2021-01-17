@@ -6,6 +6,7 @@
 
 
 {% block content %}
-<button> Cadastrar Despesa </button>
+<a href="{% url 'financeiro:despesas' %}">Despesas</a><br>
+<a href="{% url 'financeiro:boletos' %}">Boletos</a><br>
 {% endblock %}
 

@@ -1,0 +1,19 @@
+{% extends "financeiro/base.html" %}
+
+{% block titulo %}
+<h1> Boletos</h1>
+{% endblock %}
+
+
+{% block content %}
+
+<br>
+    <h2>Boletos</h2>
+    <ul>
+        {% for boleto in lista_de_boletos %}
+            <li>{{ boleto.economia }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+

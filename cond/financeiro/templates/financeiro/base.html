@@ -5,6 +5,13 @@
     <title>Modulo Financeiro</title>
   </head>
   <body>
+    
+    <form method="POST">
+      {% csrf_token %}
+      {{ form }}
+    </form>
+    
+    
     {% block titulo %}
     {% endblock %}
     <div>

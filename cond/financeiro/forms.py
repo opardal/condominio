@@ -15,5 +15,5 @@ class DespesaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(DespesaForm, self).__init__(*args, **kwargs)
-        if kwargs['initial']['is_comp']:
+        if kwargs['initial']['ocultar_campo']:
             self.fields['competencia'].widget = forms.HiddenInput()

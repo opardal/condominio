@@ -68,10 +68,10 @@ class DespesaCreate(CreateView):
             ano = competencia[:4]
             mes = competencia[4:] 
             comp = Competencia.objects.get(ano=ano, mes=mes)
-            initial = {'competencia': comp.id, 'is_comp': True}
+            initial = {'competencia': comp.id, 'ocultar_campo': True}
         except KeyError:
             comp = Competencia.objects.last()
-            initial = {'competencia': comp.id, 'is_comp': False}
+            initial = {'competencia': comp.id, 'ocultar_campo': False}
         return initial
 
     def get_context_data(self, **kwargs):
@@ -90,10 +90,25 @@ class DespesaUpdate(UpdateView):
     model = Despesa
     fields = ['nome', 'valor', 'competencia']
 
+    def get_success_url(self):
+        try:
+            competencia_str = Competencia.objects.get(id=self.request.POST['competencia'])
+            success_url = reverse('financeiro:despesa-detail-comp', kwargs={'competencia': competencia_str, 'pk':self.kwargs['pk']})
+        except KeyError:
+            success_url = reverse('financeiro:despesa-detail', kwargs={'pk': self.kwargs['pk']})
+        return success_url
+
 
 class DespesaDelete(DeleteView):
     model = Despesa
     success_url = reverse_lazy('financeiro:despesas')
+
+    def get_success_url(self):
+        try:
+            success_url = reverse('financeiro:despesas-comp', kwargs={'competencia': self.kwargs['competencia']})
+        except KeyError:
+            success_url = reverse('financeiro:despesas')
+        return success_url
 
 
 class Boletos(ListView):

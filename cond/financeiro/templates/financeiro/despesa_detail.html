@@ -6,9 +6,13 @@
 
 
 {% block content %}
-
+{% if exibir_por_competencia %}
+<a href="{% url 'financeiro:despesa-update-comp' despesa.competencia despesa.id %}" >Alterar dados da Despesa</a><br>
+<a href="{% url 'financeiro:despesa-delete-comp' despesa.competencia despesa.id %}" >Deletar Despesa</a><br>
+{% else %}
 <a href="{% url 'financeiro:despesa-update' despesa.id %}" >Alterar dados da Despesa</a><br>
 <a href="{% url 'financeiro:despesa-delete' despesa.id %}" >Deletar Despesa</a><br>
+{% endif %}
 
     <h2>Detalhe:</h2>
     <ul>

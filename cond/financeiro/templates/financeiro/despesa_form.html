@@ -3,9 +3,23 @@
   
     <!-- Security token -->
     {% csrf_token %} 
+    
+    {% if form.hidden_fields %}
+    <p>Competencia: {{ competencia }} </p>
+    {% endif %}
+    
+    {% for field in form.hidden_fields %}
+        {{ field }}
+    {% endfor %}
+
   
     <!-- Using the formset -->
-    {{ form.as_p }} 
+    {% for field in form.visible_fields %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }} 
+            </div><br>
+    {% endfor %}
       
     <input type="submit" value="Submit"> 
 </form> 

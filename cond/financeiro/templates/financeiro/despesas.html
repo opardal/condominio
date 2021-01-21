@@ -6,16 +6,23 @@
 
 
 {% block content %}
-
-<a href="{% url 'financeiro:despesa-add' %}">Incluir nova despesa</a>
+{% if exibir_por_competencia %}
+    <a href="{% url 'financeiro:despesa-add-comp' competencia %}">Incluir nova despesa</a>
+{% else %}
+    <a href="{% url 'financeiro:despesa-add' %}">Incluir nova despesa</a>
+{% endif %}
 <br>
     <h2>Despesas</h2>
     <ul>
         {% for despesa in lista_de_despesas %}
-            <li><a href="{% url 'financeiro:despesa-detail' despesa.id %}">{{ despesa.nome }}</a></li>
+            {% if exibir_por_competencia %}
+                <li><a href="{% url 'financeiro:despesa-detail-comp' competencia despesa.id %}">{{ despesa.nome }}</a></li>
+            {% else %}
+                <li><a href="{% url 'financeiro:despesa-detail' despesa.id %}">{{ despesa.nome }}</a></li>
+            {% endif %}
         {% endfor %}
     </ul>
 
 {% endblock %}
 
-{{ context }}
+
